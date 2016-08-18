@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <title>Entity Book</title>
+    </h:head>
+    <h:body>
+        <h:form>
+          Title/Last name : <h:inputText id="titlast" value="#{bBean.titlast}" size="60" /><br/> 
+          First : <h:inputText id="first" value="#{bBean.first}" size="60" /> <br/>
+  <h:selectOneRadio id="select" value="#{bBean.select}" required="true">
+    <f:selectItem itemValue="all" itemLabel="all"/>
+    <f:selectItem itemValue="title" itemLabel="title"/>
+    <f:selectItem itemValue="author" itemLabel="author"/>
+  </h:selectOneRadio>
+          <h:commandButton id="query" value="Query" actionListener="#{bBean.processQuery()}">
+  <f:ajax execute="titlast first select" render="result"/>
+  </h:commandButton>
+          <h:commandButton id="delete" value="Delete" actionListener="#{bBean.processDelete()}">
+  <f:ajax execute="titlast first select" render="result"/>
+  </h:commandButton><br/> <br/>
+   <h:outputText id="result" escape="false" value="#{bBean.displayMessage()}"/>
+        </h:form>
+    </h:body>
+</html>
+
